@@ -47,14 +47,7 @@ public abstract class Base implements BaseUtils {
                 Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
-    
-    
-    
-    
-    
-    
-    
+    }     
     @Override
     public final boolean getConnection() throws SQLException{              
        connection = DriverManager.getConnection(url, username, password);
@@ -67,7 +60,5 @@ public abstract class Base implements BaseUtils {
             connection.close();
         }       
         return true;
-    }
-    
-    
+    }        
 }
