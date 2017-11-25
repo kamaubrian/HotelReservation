@@ -52,6 +52,11 @@ public class LoginView extends javax.swing.JFrame {
 
         btnExit.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnExit.setText("EXIT");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         btnLogin.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnLogin.setText("LOGIN");
@@ -129,6 +134,12 @@ public class LoginView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        
+// TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @return 

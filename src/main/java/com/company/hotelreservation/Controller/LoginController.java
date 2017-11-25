@@ -48,8 +48,17 @@ public class LoginController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    
                     String username = loginview.getUsername().getText();
                     String password = loginview.getPassword().getText();
+                    if(username.isEmpty()){
+                        JOptionPane.showMessageDialog(loginview,"Enter Username");
+                        return;
+                    }
+                    if(password.isEmpty()){
+                        JOptionPane.showMessageDialog(loginview, "Enter Password");
+                        return;
+                    }
                     if(username.equals(loginmodel.getUsername(username)) && password.equals(loginmodel.getPassword(password))){
                         JOptionPane.showMessageDialog(loginview,"Login Success");
                     }else{
@@ -57,11 +66,7 @@ public class LoginController {
                     }
                 }catch(Exception ex){
                     ex.printStackTrace();
-                }
-                   
-            
-            
-            
+                }            
         }
                 
     }
