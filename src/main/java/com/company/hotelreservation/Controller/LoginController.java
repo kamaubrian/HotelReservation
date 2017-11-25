@@ -19,7 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author brian-kamau
+ * @author John-Gachoki
  */
 public class LoginController {
     /*
@@ -41,7 +41,7 @@ public class LoginController {
             static LoginView loginview = new LoginView();
             static Login loginmodel = new Login();
             static loginHandler login = new loginHandler();
-            
+            static SignUpHandler signup = new SignUpHandler();
             
             static class loginHandler implements ActionListener{
 
@@ -72,10 +72,13 @@ public class LoginController {
     }
             
         static class SignUpHandler implements MouseListener{
-
         @Override
         public void mouseClicked(MouseEvent e) {
-            
+            try{
+                
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
         }
 
         @Override
@@ -105,6 +108,7 @@ public class LoginController {
         loginview.setVisible(true);
         loginview.setTitle("Hotel Reservation");
         loginview.LoginSystem().addActionListener(login);
+        loginview.signUp().addMouseListener(signup);
         return loginview;
     }
     

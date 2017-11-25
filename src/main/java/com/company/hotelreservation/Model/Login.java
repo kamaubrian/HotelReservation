@@ -50,4 +50,24 @@ public class Login extends Base{
         }
         return pass;
     }
+    public boolean addUser(String fname,String lname,String username,String passwrd) throws SQLException{
+        String sql;
+        try{
+            getConnection();
+            sql="INSERT INTO USER(FIRSTNAME,LASTNAME,Username,Password) VALUES(?,?,?,?)";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,fname);
+            preparedStatement.setString(2,lname);
+            preparedStatement.setString(3,username);
+            preparedStatement.setString(4,passwrd);
+            preparedStatement.executeUpdate();
+            
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            closeConnection();
+        }
+        
+       return true;
+    }
 }
