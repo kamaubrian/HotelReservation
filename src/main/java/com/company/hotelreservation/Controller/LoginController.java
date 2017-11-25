@@ -5,6 +5,7 @@
  */
 package com.company.hotelreservation.Controller;
 
+import com.company.hotelreservation.Model.Login;
 import com.company.hotelreservation.View.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
@@ -37,6 +39,7 @@ public class LoginController {
     
 }
             static LoginView loginview = new LoginView();
+            static Login loginmodel = new Login();
             static loginHandler login = new loginHandler();
             
             
@@ -44,7 +47,18 @@ public class LoginController {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-            
+                try{
+                    String username = loginview.getUsername().getText();
+                    String password = loginview.getPassword().getText();
+                    if(username.equals(loginmodel.getUsername(username)) && password.equals(loginmodel.getPassword(password))){
+                        JOptionPane.showMessageDialog(loginview,"Login Success");
+                    }else{
+                        JOptionPane.showMessageDialog(loginview, "Incorrect Password");
+                    }
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                }
+                   
             
             
             
@@ -85,6 +99,7 @@ public class LoginController {
         loginview.setResizable(false);
         loginview.setVisible(true);
         loginview.setTitle("Hotel Reservation");
+        loginview.LoginSystem().addActionListener(login);
         return loginview;
     }
     

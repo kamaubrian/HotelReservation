@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public abstract class Base implements BaseUtils {
     public static String username ="root"; //Username for XAMPP or WAMP mysql user
-    public static String password =""; //Password for the same
+    public static String password ="wamatu"; //Password for the same
     public static String url = "jdbc:mysql://localhost:3306/HotelReservation?useSSL=false";
     protected PreparedStatement preparedStatement = null;
     protected Connection connection =null;
