@@ -5,8 +5,10 @@
  */
 package com.company.hotelreservation.Model;
 import com.company.hotelreservation.Model.BaseUtils.BaseUtils;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -28,12 +30,17 @@ public abstract class Base implements BaseUtils {
     protected Connection connection =null;
     protected ResultSet resultSet = null;
     InputStream input;
+    private File logfile = new File("./log");
+    private BufferedWriter logwriter;
     protected Statement statement = null;
     
     
     protected Base(){
         String sql;
         try{
+            logwriter = new BufferedWriter(new FileWriter(logfile));
+            
+            
             getConnection();
             statement = connection.createStatement();
             sql="CREATE TABLE IF NOT EXISTS USER("
@@ -72,8 +79,10 @@ public abstract class Base implements BaseUtils {
     public  ArrayList<String> getDatabaseCredentials(){
     
     ArrayList<String>  database_details = new ArrayList<>();
-    
+
     try{
+       logwriter = new BufferedWriter(new FileWriter(logfile,true));
+
         File propertiesfile = new File("config.properties");
         input = new FileInputStream(propertiesfile);
         properties.load(input);
@@ -82,7 +91,14 @@ public abstract class Base implements BaseUtils {
         database_details.add(properties.getProperty("database_name"));
         
     }catch(Exception ex){
-        ex.printStackTrace();
+        try {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+            logwriter.append(ex.getMessage());
+            logwriter.flush();
+        } catch (IOException ex1) {
+            Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex1);
+        }
     }finally{
         if(input!=null){
             try {
