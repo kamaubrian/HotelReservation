@@ -5,10 +5,15 @@
  */
 package com.company.hotelreservation.Model;
 import com.company.hotelreservation.Model.BaseUtils.BaseUtils;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 /**
  *
  * @author John Gachoki
@@ -22,6 +27,7 @@ public abstract class Base implements BaseUtils {
     protected PreparedStatement preparedStatement = null;
     protected Connection connection =null;
     protected ResultSet resultSet = null;
+    InputStream input;
     protected Statement statement = null;
     
     
@@ -62,5 +68,29 @@ public abstract class Base implements BaseUtils {
             connection.close();
         }       
         return true;
-    }        
+    }
+    public ArrayList<String> getDatabaseCredentials() throws IOException{
+    
+    ArrayList<String>  database_details = new ArrayList<>();
+    
+    try{
+        File propertiesfile = new File("config.properties");
+        input = new FileInputStream(propertiesfile);
+        properties.load(input);
+        database_details.add(properties.getProperty("database_name"));
+        database_details.add(properties.getProperty("database_password"));
+        database_details.add(properties.getProperty("database_username"));
+        
+    }catch(Exception ex){
+        ex.printStackTrace();
+    }finally{
+        if(input!=null){
+            input.close();
+        }
+    }
+      
+    return database_details;
+    
+}
+    
 }
