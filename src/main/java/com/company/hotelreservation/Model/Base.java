@@ -6,6 +6,7 @@
 package com.company.hotelreservation.Model;
 import com.company.hotelreservation.Model.BaseUtils.BaseUtils;
 import java.sql.*;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
  * This Class Defines Connection to the database;
  */
 public abstract class Base implements BaseUtils {
+    Properties properties = new Properties();
     public static String username ="root"; //Username for XAMPP or WAMP mysql user
     public static String password ="wamatu"; //Password for the same
     public static String url = "jdbc:mysql://localhost:3306/HotelReservation?useSSL=false";
