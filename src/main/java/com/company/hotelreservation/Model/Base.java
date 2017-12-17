@@ -81,8 +81,6 @@ public abstract class Base implements BaseUtils {
     ArrayList<String>  database_details = new ArrayList<>();
 
     try{
-       logwriter = new BufferedWriter(new FileWriter(logfile,true));
-
         File propertiesfile = new File("config.properties");
         input = new FileInputStream(propertiesfile);
         properties.load(input);
@@ -90,15 +88,10 @@ public abstract class Base implements BaseUtils {
         database_details.add(properties.getProperty("database_password"));
         database_details.add(properties.getProperty("database_name"));
         
-    }catch(Exception ex){
-        try {
+    }catch(Exception ex){   
             ex.printStackTrace();
             System.out.println(ex.getMessage());
-            logwriter.append(ex.getMessage());
-            logwriter.flush();
-        } catch (IOException ex1) {
-            Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex1);
-        }
+       
     }finally{
         if(input!=null){
             try {
@@ -107,8 +100,7 @@ public abstract class Base implements BaseUtils {
                 Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
-      
+    }     
     return database_details;
     
 }
