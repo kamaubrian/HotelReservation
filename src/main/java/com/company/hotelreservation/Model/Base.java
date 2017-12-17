@@ -21,9 +21,9 @@ import java.util.ArrayList;
  */
 public abstract class Base implements BaseUtils {
     Properties properties = new Properties();
-    public static String username ="root"; //Username for XAMPP or WAMP mysql user
-    public static String password ="wamatu"; //Password for the same
-    public static String url = "jdbc:mysql://localhost:3306/HotelReservation?useSSL=false";
+    private final String username =getDatabaseCredentials().get(0); //Username for XAMPP or WAMP mysql user
+    private final String password =getDatabaseCredentials().get(1); //Password for the same
+    private final String url = "jdbc:mysql://localhost:3306/"+getDatabaseCredentials().get(2)+"?useSSL=false";
     protected PreparedStatement preparedStatement = null;
     protected Connection connection =null;
     protected ResultSet resultSet = null;
@@ -69,7 +69,7 @@ public abstract class Base implements BaseUtils {
         }       
         return true;
     }
-    public ArrayList<String> getDatabaseCredentials() throws IOException{
+    public  ArrayList<String> getDatabaseCredentials(){
     
     ArrayList<String>  database_details = new ArrayList<>();
     
@@ -85,7 +85,11 @@ public abstract class Base implements BaseUtils {
         ex.printStackTrace();
     }finally{
         if(input!=null){
-            input.close();
+            try {
+                input.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
       

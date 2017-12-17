@@ -69,7 +69,7 @@ public class BaseTest {
         System.out.println("Test Get Configuration Files");
         Base instance = new BaseImpl();
         ArrayList<String> expectedresult = new ArrayList<>();
-        String database_name = "HotelReservation";String password="hidden";String username ="hidden";
+        String database_name = "HotelReservation";String password="wamatu";String username ="root";
         expectedresult.add(username);
         expectedresult.add(password);
         expectedresult.add(database_name);
