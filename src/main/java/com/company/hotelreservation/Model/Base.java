@@ -77,9 +77,9 @@ public abstract class Base implements BaseUtils {
         File propertiesfile = new File("config.properties");
         input = new FileInputStream(propertiesfile);
         properties.load(input);
-        database_details.add(properties.getProperty("database_name"));
-        database_details.add(properties.getProperty("database_password"));
         database_details.add(properties.getProperty("database_username"));
+        database_details.add(properties.getProperty("database_password"));
+        database_details.add(properties.getProperty("database_name"));
         
     }catch(Exception ex){
         ex.printStackTrace();

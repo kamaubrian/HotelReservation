@@ -5,6 +5,8 @@
  */
 package com.company.hotelreservation.Model;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -61,6 +63,19 @@ public class BaseTest {
         boolean result = instance.closeConnection();
         assertEquals(expResult, result);
 
+    }
+    @Test
+    public void testConfigProperties() throws IOException{
+        System.out.println("Test Get Configuration Files");
+        Base instance = new BaseImpl();
+        ArrayList<String> expectedresult = new ArrayList<>();
+        String database_name = "HotelReservation";String password="hidden";String username ="hidden";
+        expectedresult.add(username);
+        expectedresult.add(password);
+        expectedresult.add(database_name);
+        ArrayList<String> result = new ArrayList<>();
+        result = instance.getDatabaseCredentials();
+        assertEquals(expectedresult,result);
     }
 
     public class BaseImpl extends Base {
